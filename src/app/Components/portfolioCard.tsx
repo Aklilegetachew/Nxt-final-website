@@ -98,7 +98,7 @@ const portfolioItems: PortfolioItem[] = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: "Tomoca Telegram Bot",
     author: "Tomoca Bot",
     authorAvatar: "/placeholder.svg?height=32&width=32",
