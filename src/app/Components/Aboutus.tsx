@@ -53,7 +53,7 @@ export default function AboutUs() {
       icon: Globe,
       title: "Web Applications",
       description:
-        "Scalable, responsive web solutions that drive business growth",
+        "Scalable, responsive web solutions that drive business growth.",
       tech: ["Next.js", "TypeScript", "Tailwind", "API"],
     },
     {
