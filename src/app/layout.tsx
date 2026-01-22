@@ -3,7 +3,8 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { ReactNode } from "react"
-
+import Script from "next/script"
+import AnalyticsTracker from "./Components/AnalyticsTracker"
 // Load Google Fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,10 +73,27 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
           }}
         />
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-D7N7QT3PYW"
+           strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+             {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-D7N7QT3PYW', {
+        page_path: window.location.pathname,
+      });
+    `}
+  </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AnalyticsTracker />
         {children}
       </body>
     </html>
