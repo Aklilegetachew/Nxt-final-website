@@ -134,33 +134,20 @@ const faqs = [
   },
 ]
 
-const staggerContainer = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
 export default function Home() {
   return (
     <>
       <main className="min-h-screen">
         <Header />
 
+        {/* Hero Section */}
         <section
           aria-labelledby="solutions-overview"
-          className="relative py-20 px-4 bg-secondary dark:bg-gray-900 text-center mt-12 overflow-hidden"
+          className="relative section-padding bg-background-alt text-center pt-32 overflow-hidden"
         >
-          {/* Top Left Dots */}
-          <div className="absolute top-0 left-0 w-54 h-50 opacity-10">
-            <svg className="w-full h-full " viewBox="0 0 100 100" fill="none">
+          {/* Decorative dots */}
+          <div className="absolute top-0 left-0 w-48 h-48 opacity-10">
+            <svg className="w-full h-full" viewBox="0 0 100 100" fill="none">
               <defs>
                 <pattern
                   id="dots"
@@ -170,15 +157,14 @@ export default function Home() {
                   height="10"
                   patternUnits="userSpaceOnUse"
                 >
-                  <circle cx="2" cy="2" r="2" fill="black" />
+                  <circle cx="2" cy="2" r="2" fill="currentColor" className="text-primary" />
                 </pattern>
               </defs>
               <rect width="100" height="100" fill="url(#dots)" />
             </svg>
           </div>
 
-          {/* Bottom Right Dots */}
-          <div className="absolute bottom-0 right-0 w-52 h-48 opacity-10">
+          <div className="absolute bottom-0 right-0 w-48 h-48 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 100 100" fill="none">
               <defs>
                 <pattern
@@ -189,94 +175,88 @@ export default function Home() {
                   height="10"
                   patternUnits="userSpaceOnUse"
                 >
-                  <circle cx="2" cy="2" r="2" fill="black" />
+                  <circle cx="2" cy="2" r="2" fill="currentColor" className="text-primary" />
                 </pattern>
               </defs>
               <rect width="100" height="100" fill="url(#dots2)" />
             </svg>
           </div>
 
-          {/* Content Goes Here */}
-          <motion.h2
-            className="text-5xl font-extrabold tracking-tight text-primary  mb-6 uppercase leading-tight"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Empowering Ideas
-          </motion.h2>
-          <motion.h2
-            className="text-5xl font-extrabold tracking-tight text-primary  mb-6 uppercase leading-tight"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Through Tailored Software Solutions
-          </motion.h2>
-
-          <motion.div
-            className="h-0.5 w-full max-w-5xl mx-auto bg-primary rounded-full mb-12"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            style={{ transformOrigin: "left" }}
-          />
-
-          <div className="max-w-6xl mx-auto">
+          <div className="container-grid">
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left"
-              variants={staggerContainer}
-              initial="hidden"
-              animate="show"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              {serviceGroups.map((group, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="bg-card dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
-                >
-                  <h4 className="text-lg font-semibold text-primary dark:text-white mb-3">
-                    {group.title}
-                  </h4>
-                  <ul
-                    aria-label="Software Development Services"
-                    className="space-y-2 text-sm text-gray-600 dark:text-gray-300 list-disc list-inside"
-                  >
-                    {group.items.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
+              <span className="text-label text-secondary mb-4 block">SOFTWARE SOLUTIONS</span>
+              <h1 className="text-hero text-primary mb-4">
+                Empowering Ideas
+              </h1>
+              <h2 className="text-section text-primary mb-8">
+                Through Tailored Software Solutions
+              </h2>
             </motion.div>
-          </div>
-        </section>
-        {/* Products Built Section */}
-        <section className="py-24 px-4 text-primary text-center">
-          <motion.h3
-            className="text-4xl md:text-5xl font-bold mb-16 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Among Our <span className="text-primary">Works</span>
-          </motion.h3>
 
-          <div className="py-16 px-4 bg-secondary" id="Explore">
-            <div className="max-w-4/5 mx-auto">
-              <SomeOfWorkCard />
+            <motion.div
+              className="h-0.5 w-full max-w-4xl mx-auto bg-border rounded-full mb-12"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              style={{ transformOrigin: "left" }}
+            />
+
+            {/* Service Groups */}
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                {serviceGroups.map((group, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-white border border-border p-6 rounded-lg shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
+                  >
+                    <h4 className="text-lg font-semibold text-primary mb-4">
+                      {group.title}
+                    </h4>
+                    <ul
+                      aria-label="Software Development Services"
+                      className="space-y-2 text-sm text-text-subtle list-disc list-inside"
+                    >
+                      {group.items.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
-          {/* </div> */}
+        </section>
+
+        {/* Products Built Section */}
+        <section className="section-padding bg-background text-center">
+          <div className="container-grid">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <span className="text-label text-secondary mb-4 block">PORTFOLIO</span>
+              <h2 className="text-section text-primary">
+                Among Our <span className="text-secondary">Works</span>
+              </h2>
+            </motion.div>
+
+            <SomeOfWorkCard />
+          </div>
         </section>
 
         <FeatureTabsSection tabs={tabs} />
-        {/* <ProjectShowcaseTabs /> */}
-
         <ServicesShowcase services={services} />
         <FAQSection faqs={faqs} />
-
-        {/* <ProcessRopeSteps /> */}
 
         <Footer />
       </main>

@@ -4,74 +4,107 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
 :root {
-  --background: #f3efe0;
-  --foreground: #010145;
-
-  --card: #f3efe0;
-  --card-foreground: #080c14;
-
-  --popover: #ffffff;
-  --popover-foreground: #080c14;
-
-  --primary: #0b032d;
-  --primary-foreground: #f3efe0;
-
-  --secondary: #f3efe0;
-  --secondary-foreground: #010145;
-
-  --muted: #f5f9fb;
-  --muted-foreground: #6b7385;
-
-  --accent: #f5f9fb;
-  --accent-foreground: #181c24;
-
-  --destructive: #e63946;
-  --destructive-foreground: #f8fafc;
-
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #080c14;
-
-  --radius: 0.5rem;
+  /* Primary Colors */
+  --primary: #1A2B3C;           /* Deep Slate Blue */
+  --primary-foreground: #FFFFFF;
+  --primary-light: #243A4D;
+  
+  /* Secondary/Action Color */
+  --secondary: #0A66C2;         /* Vibrant Cyan / Electric Blue */
+  --secondary-foreground: #1A2B3C;
+  
+  /* Accent Color */
+  --accent: #10B981;            /* Emerald Green */
+  --accent-foreground: #FFFFFF;
+  
+  /* Backgrounds */
+  --background: #FFFFFF;        /* Clean White */
+  --background-alt: #F8FAFC;    /* Light Grey/Blue Tint */
+  --foreground: #334155;        /* Charcoal Grey - Primary Text */
+  
+  /* Text Colors */
+  --text-primary: #334155;      /* Charcoal Grey */
+  --text-subtle: #64748B;       /* Slate Grey */
+  
+  /* Card */
+  --card: #FFFFFF;
+  --card-foreground: #334155;
+  
+  /* Popover */
+  --popover: #FFFFFF;
+  --popover-foreground: #334155;
+  
+  /* Muted */
+  --muted: #F8FAFC;
+  --muted-foreground: #64748B;
+  
+  /* Destructive */
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  
+  /* Border & Input */
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #1A2B3C;
+  
+  /* Navy for dark sections */
+  --navy: #0F172A;
+  --navy-light: #1E293B;
+  
+  /* Radius */
+  --radius: 0.5rem;             /* 8px for cards, 4px for buttons */
+  --radius-sm: 0.25rem;         /* 4px */
+  --radius-md: 0.5rem;          /* 8px */
+  --radius-lg: 0.75rem;         /* 12px */
 }
 
 .dark {
-  --background: #010145; /* #131200 adjusted from HSL */
-  --foreground: #f3efe0;
-
-  --card: #080c14;
-  --card-foreground: #f8fafc;
-
-  --popover: #080c14;
-  --popover-foreground: #f8fafc;
-
-  --primary: #f3efe0;
-  --primary-foreground: #181c24;
-
-  --secondary: #1f2735;
-  --secondary-foreground: #f8fafc;
-
-  --muted: #1f2735;
-  --muted-foreground: #9ca3af;
-
-  --accent: #1f2735;
-  --accent-foreground: #f8fafc;
-
-  --destructive: #661a1a;
-  --destructive-foreground: #f8fafc;
-
-  --border: #1f2735;
-  --input: #1f2735;
-  --ring: #d1d5db;
+  /* Dark Mode - Deep Navy theme */
+  --primary: #F8FAFC;           /* Light text/elements in dark mode */
+  --primary-foreground: #0F172A;
+  --primary-light: #E2E8F0;
+  
+  --secondary: #0A66C2;         /* Cyan stays the same */
+  --secondary-foreground: #0F172A;
+  
+  --accent: #10B981;
+  --accent-foreground: #FFFFFF;
+  
+  --background: #0F172A;        /* Deep Navy */
+  --background-alt: #1E293B;
+  --foreground: #F8FAFC;
+  
+  --text-primary: #F8FAFC;
+  --text-subtle: #94A3B8;
+  
+  --card: #1E293B;
+  --card-foreground: #F8FAFC;
+  
+  --popover: #1E293B;
+  --popover-foreground: #F8FAFC;
+  
+  --muted: #334155;
+  --muted-foreground: #94A3B8;
+  
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  
+  --border: #334155;
+  --input: #334155;
+  --ring: #00D1FF;
+  
+  --navy: #0F172A;
+  --navy-light: #1E293B;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -79,6 +112,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -90,30 +124,160 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-text-primary: var(--text-primary);
+  --color-text-subtle: var(--text-subtle);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+  
+  /* Typography Scale */
+  h1 {
+    @apply text-5xl font-bold leading-tight tracking-tight;
+    letter-spacing: -0.02em;
+  }
+  
+  h2 {
+    @apply text-4xl font-semibold leading-snug;
+  }
+  
+  h3 {
+    @apply text-2xl font-semibold leading-normal;
+  }
+  
+  p {
+    @apply text-base leading-relaxed;
+  }
+  
+  .text-body-large {
+    @apply text-lg leading-relaxed;
+  }
+  
+  .text-label {
+    @apply text-sm font-medium uppercase tracking-wide;
+  }
+}
+
+/* Utility Classes for Design System */
+@layer utilities {
+  /* Section padding - 80px to 120px breathing room */
+  .section-padding {
+    @apply py-20 lg:py-24;
+  }
+  
+  .section-padding-lg {
+    @apply py-24 lg:py-32;
+  }
+  
+  /* Container with 12-column grid support */
+  .container-grid {
+    @apply container mx-auto px-6 max-w-7xl;
+  }
+  
+  /* Card styles following the design guide */
+  .card-service {
+    @apply bg-card border border-border rounded-lg;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .dark .card-service {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-service:hover {
+    @apply border-secondary;
+  }
+  
+  /* Primary Button Styles */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold rounded;
+    padding: 16px 32px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .btn-primary:hover {
+    @apply shadow-lg;
+    transform: translateY(-1px);
+  }
+  
+  /* Scroll reveal animation */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Transition standard */
+  .transition-standard {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Input field styles */
+  .input-field {
+    @apply h-12 border border-border rounded px-4 w-full bg-background text-foreground;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .input-field:focus {
+    @apply outline-none border-secondary;
+    border-width: 2px;
+    box-shadow: 0 0 0 3px rgba(0, 209, 255, 0.1);
+  }
+  
+  /* Dark section */
+  .section-dark {
+    @apply bg-navy text-white;
+  }
+  
+  /* Alt background section */
+  .section-alt {
+    @apply bg-background-alt;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--secondary);
+  color: var(--primary-foreground);
+}
+
+/* Dark mode specific styles for better contrast */
+.dark {
+  /* Improve shadow visibility in dark mode */
+  --shadow-card: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme transition for smoother switching */
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Prevent transition on page load */
+html.no-transition * {
+  transition: none !important;
 }

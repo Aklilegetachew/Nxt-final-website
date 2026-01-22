@@ -24,7 +24,6 @@ export default function EnterpriseSolution({
   companyName = "NXT",
   breakIndex,
 }: EnterpriseSolutionProps) {
-  // Replace "versavvy" (case-insensitive) with "nxt"
   const processedDescription = description
     .replace(/versavvy/gi, "nxt")
     .replace(/NXT/g, companyName)
@@ -34,9 +33,13 @@ export default function EnterpriseSolution({
   // If no breakIndex provided or invalid, just render normally
   if (!breakIndex || breakIndex < 1 || breakIndex >= words.length) {
     return (
-      <h1 className="mb-4 text-4xl font-extrabold leading-tight text-purple-900 md:text-5xl lg:text-6xl">
-        {title}
-      </h1>
+      <section className={cn("section-padding bg-background", className)}>
+        <div className="container-grid">
+          <h1 className="mb-4 text-hero text-primary">
+            {title}
+          </h1>
+        </div>
+      </section>
     )
   }
 
@@ -46,34 +49,39 @@ export default function EnterpriseSolution({
   return (
     <section
       className={cn(
-        "relative w-full overflow-hidden bg-secondary pt-20 md:pt-28 lg:pt-32",
+        "relative w-full overflow-hidden bg-background-alt pt-28 pb-20",
         className
       )}
     >
-      <div className="absolute left-0 top-0 h-[300px] w-[300px] bg-{#341C1C} opacity-30 pointer-events-none rounded-full blur-3xl"></div>
+      {/* Decorative blur element */}
+      <div className="absolute left-0 top-0 h-[400px] w-[400px] bg-secondary/20 opacity-30 pointer-events-none rounded-full blur-3xl"></div>
 
-      <div className="container mx-auto px-6 md:px-10 lg:px-16">
-        <div className="mb-20 text-center">
-          <h1 className="mb-4 text-4xl font-extrabold leading-tight text-primary md:text-5xl lg:text-6xl">
+      <div className="container-grid">
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <h1 className="mb-6 text-4xl md:text-5xl font-bold leading-tight text-primary">
             <span className="block">{firstLine}</span>
-            <span className="block">{secondLine}</span>
+            <span className="block text-secondary">{secondLine}</span>
           </h1>
           {subtitle && (
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-body-lg text-text-subtle max-w-2xl mx-auto">
               {subtitle}
             </p>
           )}
         </div>
 
-        <div className="relative grid gap-14 md:grid-cols-2 md:gap-16 lg:gap-20 items-center">
+        {/* Content Grid */}
+        <div className="relative grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+          {/* Text Content */}
           <div className="flex flex-col justify-center">
-            <p className="text-base md:text-lg lg:text-xl leading-relaxed text-gray-700">
+            <p className="text-lg leading-relaxed text-text-subtle">
               {processedDescription}
             </p>
           </div>
 
+          {/* Image */}
           <div className="relative w-full">
-            <div className="relative w-full h-[350px] md:h-[450px] lg:h-[500px] overflow-hidden rounded-tl-[8rem] rounded-br-[8rem] shadow-lg">
+            <div className="relative w-full h-[350px] md:h-[450px] lg:h-[500px] overflow-hidden rounded-lg shadow-card-hover">
               <Image
                 src={imageSrc || "/placeholder.svg"}
                 alt={imageAlt}
@@ -81,16 +89,19 @@ export default function EnterpriseSolution({
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
             </div>
           </div>
 
+          {/* Background decorative image */}
           {backgroundImageSrc && (
-            <div className="absolute bottom-4 left-4 z-10  pointer-events-none">
+            <div className="absolute -bottom-10 -left-10 z-0 opacity-10 pointer-events-none">
               <Image
                 src={backgroundImageSrc}
                 alt="Background illustration"
-                width={500}
-                height={300}
+                width={400}
+                height={240}
                 className="object-contain"
               />
             </div>

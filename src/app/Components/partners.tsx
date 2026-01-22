@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
+import { motion } from "framer-motion"
 
 type Partner = {
-  name: string;
-  logo: string;
-  url: string;
-};
+  name: string
+  logo: string
+  url: string
+}
 
 const partners: Partner[] = [
   {
@@ -46,43 +46,50 @@ const partners: Partner[] = [
     logo: "/logos/yeshiwas.svg",
     url: "https://partner8.com",
   },
-  // Add more partners as needed
-];
+]
 
 export function Partners() {
-  const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);
-          observer.unobserve(entry.target);
+          setInView(true)
+          observer.unobserve(entry.target)
         }
       },
       {
         threshold: 0.1,
       }
-    );
+    )
 
     if (ref.current) {
-      observer.observe(ref.current);
+      observer.observe(ref.current)
     }
 
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current);
+        observer.unobserve(ref.current)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   return (
-    <section ref={ref} className="py-16 bg-secondary">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-primary">
-          Our Partners
-        </h2>
+    <section ref={ref} className="section-padding bg-background-alt">
+      <div className="container-grid">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <span className="text-label text-secondary mb-4 block">TRUSTED BY</span>
+          <h2 className="text-section text-primary mb-4">Our Partners</h2>
+          <p className="text-text-subtle max-w-2xl mx-auto">
+            We collaborate with leading organizations across various industries to deliver 
+            exceptional results.
+          </p>
+        </div>
+
+        {/* Partners Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center justify-center">
           {partners.map((partner, index) => (
             <motion.div
@@ -96,14 +103,13 @@ export function Partners() {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative w-full h-24 md:h-32 transition-transform duration-300 ease-in-out transform hover:scale-105"
+                className="relative w-full h-24 md:h-28 p-4 rounded-lg bg-white border border-border hover:border-secondary hover:shadow-card transition-all duration-200 group"
               >
                 <Image
                   src={partner.logo || "/placeholder.svg"}
                   alt={partner.name}
-                  layout="fill"
-                  objectFit="contain"
-                  className="transition-all duration-300 ease-in-out filter grayscale hover:filter-none"
+                  fill
+                  className="object-contain p-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
                 />
               </a>
             </motion.div>
@@ -111,5 +117,5 @@ export function Partners() {
         </div>
       </div>
     </section>
-  );
+  )
 }

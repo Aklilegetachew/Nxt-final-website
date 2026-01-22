@@ -39,30 +39,27 @@ export default function HeroSection({
   services = defaultServices,
 }: HeroSectionProps) {
   return (
-    <section className={`w-full overflow-hidden bg-secondary ${className}`}>
+    <section className={`w-full overflow-hidden bg-background-alt ${className}`}>
       {/* Main hero section */}
-      <div className="relative">
+      <div className="relative pt-24">
         {/* Background decorative elements */}
-        <div className="absolute left-10 top-20 h-16 w-16 rotate-45 rounded-md bg-primary/10"></div>
-        <div className="absolute right-1/4 top-10 h-10 w-10 rounded-full bg-primary/10"></div>
-        <div className="absolute left-1/3 bottom-20 h-8 w-8 rounded-full bg-primary/10"></div>
+        <div className="absolute left-10 top-32 h-16 w-16 rotate-45 rounded-md bg-secondary/10"></div>
+        <div className="absolute right-1/4 top-24 h-10 w-10 rounded-full bg-secondary/10"></div>
+        <div className="absolute left-1/3 bottom-20 h-8 w-8 rounded-full bg-secondary/10"></div>
 
-        <div className="container relative mx-auto px-4 py-16 md:py-24">
-          <div className="grid items-center gap-8 lg:grid-cols-2">
+        <div className="container-grid section-padding">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="max-w-xl">
-              <p className="mb-3 text-sm font-medium tracking-widest text-primary">
+              <span className="text-label text-secondary mb-4 block">
                 {subtitle}
-              </p>
-              <h1 className="mb-6 text-4xl font-bold leading-tight text-primary md:text-5xl">
+              </span>
+              <h1 className="text-hero text-primary mb-6">
                 {title}
               </h1>
               {description && (
-                <p className="mb-8 text-lg text-primary/80">{description}</p>
+                <p className="text-body-lg text-text-subtle mb-8">{description}</p>
               )}
-              <Button
-                asChild
-                className="rounded-md bg-primary px-8 py-6 text-base font-medium text-white hover:bg-primary/90"
-              >
+              <Button asChild size="lg">
                 <Link href={buttonLink}>{buttonText}</Link>
               </Button>
             </div>
@@ -80,15 +77,15 @@ export default function HeroSection({
       </div>
 
       {/* Secondary section */}
-      <div className="bg-primary/5 py-12">
-        <div className="container mx-auto px-4 text-center">
-          <p className="mb-2 text-sm font-medium tracking-widest text-primary">
+      <div className="bg-background py-12 border-y border-border">
+        <div className="container-grid text-center">
+          <span className="text-label text-secondary mb-3 block">
             {secondarySubtitle}
-          </p>
-          <h2 className="text-3xl font-bold text-primary md:text-4xl">
+          </span>
+          <h2 className="text-section text-primary">
             {secondaryTitle}
           </h2>
-          <div className="mx-auto mt-3 h-1 w-16 bg-primary"></div>
+          <div className="mx-auto mt-4 h-1 w-16 bg-secondary rounded-full"></div>
         </div>
       </div>
 
@@ -128,7 +125,7 @@ const defaultServices: Service[] = [
   {
     title: "Video Production",
     description:
-      "We’re a full-service digital marketing and video production agency. Any equipment or talent we don’t have immediate access to, we source for you. Tell us what you need – on-location camera crew, post-production assistance, directorial assistance, scripts – and leave the rest to us.",
+      "We're a full-service digital marketing and video production agency. Any equipment or talent we don't have immediate access to, we source for you. Tell us what you need – on-location camera crew, post-production assistance, directorial assistance, scripts – and leave the rest to us.",
     imageSrc: "/services/videoPro.svg",
     buttonText: "Get a Quote",
     buttonLink: "/services/videoPro.svg",

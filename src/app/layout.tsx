@@ -1,14 +1,17 @@
 // app/layout.tsx
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Inter, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { ReactNode } from "react"
 import Script from "next/script"
 import AnalyticsTracker from "./Components/AnalyticsTracker"
-// Load Google Fonts
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { ThemeProvider } from "@/components/ThemeProvider"
+
+// Load Inter font as primary (per design guide - clean, legible sans-serif)
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 })
 
 const geistMono = Geist_Mono({
@@ -65,7 +68,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -77,24 +80,31 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-D7N7QT3PYW"
-           strategy="afterInteractive"
+          strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
-             {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-D7N7QT3PYW', {
-        page_path: window.location.pathname,
-      });
-    `}
-  </Script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-D7N7QT3PYW', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <AnalyticsTracker />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AnalyticsTracker />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

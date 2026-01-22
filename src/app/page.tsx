@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     canonical: process.env.NEXT_PUBLIC_SITE_URL,
   },
 }
+
 export default function Home() {
   const milestones = [
     {
@@ -69,41 +70,44 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       <HeroSection />
+      
+      {/* Our Story Section */}
       <section
         aria-labelledby="our-story"
-        className="min-h-screen  pt-16 px-4 bg-background"
+        className="section-padding bg-background"
       >
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-8 text-foreground">
-            Our Story
-          </h2>
-          <p className="text-center !text-color-primary mb-16 max-w-3xl mx-auto">
-            We're a software development firm that helps our clients succeed
-            with innovative, software-centric solutions. We design, integrate,
-            and support cutting-edge media and communication technologies for a
-            connected world.
-          </p>
-        </div>
-        <div className="max-w-6xl mx-auto">
-          <Timeline milestones={milestones} />
+        <div className="container-grid">
+          <div className="text-center mb-16">
+            <span className="text-label text-secondary mb-4 block">OUR JOURNEY</span>
+            <h2 className="text-section text-primary mb-6">Our Story</h2>
+            <p className="text-body-lg text-text-subtle max-w-3xl mx-auto">
+              We&apos;re a software development firm that helps our clients succeed
+              with innovative, software-centric solutions. We design, integrate,
+              and support cutting-edge media and communication technologies for a
+              connected world.
+            </p>
+          </div>
+          <div className="max-w-5xl mx-auto">
+            <Timeline milestones={milestones} />
+          </div>
         </div>
       </section>
 
       {/* Portfolio Section */}
-      <div className="py-16 px-4 bg-secondary" id="Explore">
-        <section id="portfolio" className="max-w-4/5 mx-auto">
+      <section id="Explore" className="section-padding bg-background-alt">
+        <div className="container-grid">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary  mb-4">
-              Our Portfolio
-            </h2>
-            <p className="text-xl text-primary max-w-2xl mx-auto">
+            <span className="text-label text-secondary mb-4 block">OUR WORK</span>
+            <h2 className="text-section text-primary mb-6">Our Portfolio</h2>
+            <p className="text-body-lg text-text-subtle max-w-2xl mx-auto">
               Discover our latest projects and creative solutions that have
               helped businesses transform digitally.
             </p>
           </div>
           <PortfolioCards />
-        </section>
-      </div>
+        </div>
+      </section>
+      
       <Partners />
       <BackgroundPaths />
       <Footer />

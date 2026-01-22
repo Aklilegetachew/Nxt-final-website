@@ -1,3 +1,6 @@
+"use client"
+
+import { motion } from "framer-motion"
 import ServiceCard from "./service-card"
 
 interface Service {
@@ -14,20 +17,33 @@ interface ServicesProps {
 
 export default function ServicesSection({ services }: ServicesProps) {
   return (
-    <div className="bg-secondary py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+    <div className="section-padding bg-background">
+      <div className="container-grid">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+        >
           {services.map((service, index) => (
-            <ServiceCard
+            <motion.div
               key={index}
-              title={service.title}
-              description={service.description}
-              imageSrc={service.imageSrc}
-              buttonText={service.buttonText}
-              buttonLink={service.buttonLink}
-            />
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                imageSrc={service.imageSrc}
+                buttonText={service.buttonText}
+                buttonLink={service.buttonLink}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )

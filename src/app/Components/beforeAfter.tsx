@@ -1,76 +1,90 @@
-import React from "react";
-import { Card } from "primereact/card";
-import { Divider } from "primereact/divider";
+"use client"
+
+import { motion } from "framer-motion"
 import {
-  PiSliders,
-  PiChartLine,
-  PiArrowsClockwise,
-  PiDatabase,
-  PiGear,
-  PiArrowUp,
-} from "react-icons/pi";
+  Sliders,
+  TrendingUp,
+  RefreshCw,
+  Database,
+  Settings,
+  ArrowUp,
+} from "lucide-react"
 
 const painPoints = [
   {
-    icon: <PiSliders size={32} />,
+    icon: Sliders,
     title: "Disconnected Systems",
     description:
       "Separate tools across departments cause delays, double entry, and costly errors. We bring everything into one streamlined system.",
   },
   {
-    icon: <PiChartLine size={32} />,
+    icon: TrendingUp,
     title: "Lack of Real-Time Insights",
     description:
-      "You can’t make great decisions with outdated data. We provide live dashboards and up-to-date reports.",
+      "You can't make great decisions with outdated data. We provide live dashboards and up-to-date reports.",
   },
   {
-    icon: <PiArrowsClockwise size={32} />,
+    icon: RefreshCw,
     title: "Manual Workflows",
     description:
       "Approvals, payroll, inventory — too much is done by hand. We automate where it matters most.",
   },
   {
-    icon: <PiDatabase size={32} />,
+    icon: Database,
     title: "Scattered Data",
     description:
       "Your data is all over the place — spreadsheets, emails, disconnected apps. We unify it in one place.",
   },
   {
-    icon: <PiGear size={32} />,
+    icon: Settings,
     title: "Generic Software",
     description:
       "Off-the-shelf software forces you to adapt to it. We build solutions that adapt to you.",
   },
   {
-    icon: <PiArrowUp size={32} />,
+    icon: ArrowUp,
     title: "Difficult to Scale",
     description:
-      "Your current tools weren’t built to grow with you. Our platform scales alongside your success.",
+      "Your current tools weren't built to grow with you. Our platform scales alongside your success.",
   },
-];
+]
 
 export default function PainPointsSection() {
   return (
-    <section className="w-full px-4 py-20 bg-secondary ">
-      <div className="max-w-7xl mx-auto text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-primary ">
-          Business Challenges We Solve
-        </h2>
-      </div>
+    <section id="services" className="w-full section-padding bg-background-alt">
+      <div className="container-grid">
+        <div className="text-center mb-16">
+          <span className="text-label text-secondary mb-4 block">
+            CHALLENGES WE SOLVE
+          </span>
+          <h2 className="text-section text-primary">
+            Business Challenges We Solve
+          </h2>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {painPoints.map((point, idx) => (
-          <Card key={idx} className="shadow-md rounded-xl overflow-hidden">
-            <div className="flex flex-col items-center text-center p-6 space-y-4">
-              <div className="">{point.icon}</div>
-              <h4 className="text-lg font-semibold text-primary ">
-                {point.title}
-              </h4>
-              <p className="text-sm text-gray-600">{point.description}</p>
-            </div>
-          </Card>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {painPoints.map((point, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200 group"
+            >
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-14 h-14 rounded-lg bg-primary flex items-center justify-center group-hover:bg-secondary transition-colors duration-200">
+                  <point.icon className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="text-lg font-semibold text-primary">
+                  {point.title}
+                </h4>
+                <p className="text-sm text-text-subtle">{point.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
-  );
+  )
 }

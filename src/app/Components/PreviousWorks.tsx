@@ -1,7 +1,9 @@
-// components/PreviousWorks.tsx
+"use client"
 
 import { motion } from "framer-motion"
 import React from "react"
+import Image from "next/image"
+import { ArrowRight } from "lucide-react"
 
 type Project = {
   title: string
@@ -17,82 +19,78 @@ interface PreviousWorksProps {
 
 const PreviousWorks: React.FC<PreviousWorksProps> = ({ projects }) => {
   return (
-    <section className="py-16 bg-secondary ">
-      <div className="max-w-5xl mx-auto text-center mb-12 px-4">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Our Proven Enterprise Solutions
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Over the years, we’ve built powerful, scalable software solutions that
-          have transformed businesses across various industries. Here are a few
-          of our flagship projects:
-        </p>
-      </div>
+    <section className="section-padding bg-background-alt">
+      <div className="container-grid">
+        <div className="text-center mb-16">
+          <span className="text-label text-secondary mb-4 block">OUR SOLUTIONS</span>
+          <h2 className="text-section text-primary mb-6">
+            Our Proven Enterprise Solutions
+          </h2>
+          <p className="text-body-lg text-text-subtle max-w-2xl mx-auto">
+            Over the years, we&apos;ve built powerful, scalable software solutions that
+            have transformed businesses across various industries. Here are a few
+            of our flagship projects:
+          </p>
+        </div>
 
-      <div className="space-y-10 max-w-7xl mx-auto px-4">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="flex flex-col h-72 md:flex-row bg-primary overflow-hidden shadow hover:shadow-lg transition duration-300 "
-          >
-            {/* Image Section with Overlay Animation + Text */}
-            <div className="relative md:w-2/3 w-full md:h-auto">
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
+        <div className="space-y-8 max-w-6xl mx-auto">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200 group"
+            >
+              {/* Image Section */}
+              <div className="relative md:w-2/3 w-full h-64 md:h-80">
+                <Image
+                  src={project.imageUrl}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
 
-              {/* Overlay + Text Animation */}
-              <motion.div
-                initial="initial"
-                whileHover="hover"
-                variants={{
-                  initial: { x: 0, opacity: 1 },
-                  hover: { x: "100%", opacity: 0 },
-                }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="absolute inset-0 bg-black/60 flex items-center justify-center transition-all"
-              >
-                <motion.div
-                  variants={{
-                    initial: { opacity: 1 },
-                    hover: { opacity: 0 },
-                  }}
-                  transition={{ duration: 0.5 }}
-                  className="text-white text-center px-4"
-                >
-                  <h4 className="text-2xl font-semibold mb-2">Modules</h4>
-                  <ul className="list-disc list-inside space-y-1 text-sm text-left">
-                    {project.modules.map((module, idx) => (
-                      <li className="text-lg" key={idx}>
-                        {module}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </motion.div>
-            </div>
+                {/* Overlay with Modules */}
+                <div className="absolute inset-0 bg-navy/70 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <div className="text-white text-center px-6">
+                    <h4 className="text-lg font-semibold mb-4">Key Modules</h4>
+                    <ul className="space-y-2">
+                      {project.modules.map((module, idx) => (
+                        <li key={idx} className="text-white/80 text-sm flex items-center justify-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                          {module}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-            {/* Content Section */}
-            <div className="md:w-1/3 w-full p-6 flex flex-col justify-center">
-              <h3 className="text-2xl font-semibold text-white mb-2">
-                {project.title}
-              </h3>
-              <p className="text-secondary mb-4">{project.description}</p>
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-white font-medium hover:underline"
-                >
-                  View Project →
-                </a>
-              )}
-            </div>
-          </div>
-        ))}
+              {/* Content Section */}
+              <div className="md:w-1/3 w-full p-6 flex flex-col justify-center bg-primary">
+                <h3 className="text-xl font-semibold text-white mb-3">
+                  {project.title}
+                </h3>
+                <p className="text-white/70 mb-4 text-sm">
+                  {project.description}
+                </p>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-secondary font-medium hover:underline text-sm"
+                  >
+                    View Project
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

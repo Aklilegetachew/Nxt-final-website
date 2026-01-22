@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
 import {
   MapPin,
@@ -20,9 +19,10 @@ import {
   Globe,
   CheckCircle,
 } from "lucide-react"
+import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
 
 export default function ContactUs() {
-  const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
@@ -34,16 +34,15 @@ export default function ContactUs() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  
   const officeMapURL =
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.7014708095016!2d38.764860211324034!3d8.99959288940983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b850b4031ae6d%3A0x6205c136da432529!2sSTERLING%20BUILDING!5e0!3m2!1sen!2set!4v1749460155405!5m2!1sen!2set"
 
   const directionsURL =
     "https://www.google.com/maps/dir/?api=1&destination=STERLING+BUILDING,+Addis+Ababa,+Ethiopia"
+
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
     setIsVisible(true)
-    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const handleInputChange = (
@@ -80,7 +79,6 @@ export default function ContactUs() {
           message: "",
         })
 
-        // Hide success message after 3s (optional)
         setTimeout(() => {
           setIsSubmitted(false)
         }, 3000)
@@ -140,95 +138,59 @@ export default function ContactUs() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary-50 via-secondary to-secondary-100 text-primary overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-100 via-red-50 to-orange-50 animate-pulse"></div>
-        <div
-          className="absolute inset-0 bg-gradient-to-l from-orange-100 via-red-100 to-red-50 mix-blend-multiply"
-          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
-        ></div>
-      </div>
-
-      {/* Floating Elements */}
-      <div className="fixed inset-0">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 rounded-full animate-pulse opacity-20"
-            style={{
-              backgroundColor: "#341C1C",
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
-            }}
-          ></div>
-        ))}
-      </div>
-
+    <div className="min-h-screen bg-background text-foreground overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-32 px-4 overflow-hidden">
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <div
-            className={`transition-all duration-1000 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
+      <section className="relative pt-32 pb-20 px-6 bg-background-alt">
+        <div className="container-grid text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            <div
-              className="inline-block px-6 py-3 rounded-full border-2 mb-8"
-              style={{ backgroundColor: "#341C1C10", borderColor: "#010145" }}
-            >
-              <span
-                className="text-sm font-medium"
-                style={{ color: "#010145" }}
-              >
-                GET IN TOUCH
-              </span>
-            </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-8 text-primary">
-              Contact <span style={{ color: "#010145" }}>Us</span>
+            <span className="text-label text-secondary mb-4 block">GET IN TOUCH</span>
+            <h1 className="text-hero text-primary mb-6">
+              Contact <span className="text-secondary">Us</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-body-lg text-text-subtle max-w-2xl mx-auto">
               Ready to transform your business with cutting-edge technology?
-              Let's discuss your project and bring your vision to life.
+              Let&apos;s discuss your project and bring your vision to life.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="relative py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16">
+      <section className="section-padding">
+        <div className="container-grid">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="relative">
-              <div className="backdrop-blur-lg bg-white/90 rounded-3xl p-8 border border-gray-200 shadow-2xl">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white rounded-lg p-8 border border-border shadow-card">
                 <div className="mb-8">
-                  <h2 className="text-3xl font-bold text-primary mb-4">
+                  <h2 className="text-2xl font-semibold text-primary mb-3">
                     Send us a Message
                   </h2>
-                  <p className="text-gray-600">
-                    Fill out the form below and we'll get back to you within 24
+                  <p className="text-text-subtle">
+                    Fill out the form below and we&apos;ll get back to you within 24
                     hours.
                   </p>
                 </div>
 
                 {isSubmitted ? (
                   <div className="text-center py-12">
-                    <div
-                      className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: "#010145" }}
-                    >
-                      <CheckCircle className="w-10 h-10 text-white" />
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent flex items-center justify-center">
+                      <CheckCircle className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-primary mb-4">
+                    <h3 className="text-xl font-semibold text-primary mb-3">
                       Message Sent Successfully!
                     </h3>
-                    <p className="text-primary">
-                      Thank you for contacting us. We'll get back to you soon.
+                    <p className="text-text-subtle">
+                      Thank you for contacting us. We&apos;ll get back to you soon.
                     </p>
                   </div>
                 ) : (
@@ -237,12 +199,12 @@ export default function ContactUs() {
                       <div>
                         <label
                           htmlFor="name"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-primary mb-2"
                         >
                           Full Name *
                         </label>
                         <div className="relative">
-                          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-subtle" />
                           <input
                             type="text"
                             id="name"
@@ -250,7 +212,7 @@ export default function ContactUs() {
                             required
                             value={formData.name}
                             onChange={handleInputChange}
-                            className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-lg focus:border-transparent transition-all duration-300 bg-white"
+                            className="input-field pl-12"
                             placeholder="Enter your full name"
                           />
                         </div>
@@ -259,12 +221,12 @@ export default function ContactUs() {
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-primary mb-2"
                         >
                           Email Address *
                         </label>
                         <div className="relative">
-                          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-subtle" />
                           <input
                             type="email"
                             id="email"
@@ -272,7 +234,7 @@ export default function ContactUs() {
                             required
                             value={formData.email}
                             onChange={handleInputChange}
-                            className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-lg focus:border-transparent transition-all duration-300 bg-white"
+                            className="input-field pl-12"
                             placeholder="Enter your email"
                           />
                         </div>
@@ -283,20 +245,19 @@ export default function ContactUs() {
                       <div>
                         <label
                           htmlFor="phone"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-primary mb-2"
                         >
                           Phone Number
                         </label>
                         <div className="relative">
-                          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-subtle" />
                           <input
                             type="tel"
                             id="phone"
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
-                            className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-lg focus:border-transparent transition-all duration-300 bg-white"
-                            // style={{ focusRingColor: "#341C1C" }}
+                            className="input-field pl-12"
                             placeholder="Enter your phone number"
                           />
                         </div>
@@ -305,20 +266,19 @@ export default function ContactUs() {
                       <div>
                         <label
                           htmlFor="company"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-primary mb-2"
                         >
                           Company Name
                         </label>
                         <div className="relative">
-                          <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Building className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-subtle" />
                           <input
                             type="text"
                             id="company"
                             name="company"
                             value={formData.company}
                             onChange={handleInputChange}
-                            className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-lg focus:border-transparent transition-all duration-300 bg-white"
-                            // style={{ focusRingColor: "#341C1C" }}
+                            className="input-field pl-12"
                             placeholder="Enter your company name"
                           />
                         </div>
@@ -328,12 +288,12 @@ export default function ContactUs() {
                     <div>
                       <label
                         htmlFor="subject"
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="block text-sm font-medium text-primary mb-2"
                       >
                         Subject *
                       </label>
                       <div className="relative">
-                        <MessageSquare className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <MessageSquare className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-subtle" />
                         <input
                           type="text"
                           id="subject"
@@ -341,8 +301,7 @@ export default function ContactUs() {
                           required
                           value={formData.subject}
                           onChange={handleInputChange}
-                          className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-lg focus:border-transparent transition-all duration-300 bg-white"
-                          // style={{ focusRingColor: "#341C1C" }}
+                          className="input-field pl-12"
                           placeholder="What's this about?"
                         />
                       </div>
@@ -351,7 +310,7 @@ export default function ContactUs() {
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="block text-sm font-medium text-primary mb-2"
                       >
                         Message *
                       </label>
@@ -362,21 +321,20 @@ export default function ContactUs() {
                         rows={6}
                         value={formData.message}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-primary/20 rounded-lg focus:border-transparent transition-all duration-300 bg-white resize-none"
-                        // style={{ focusRingColor: "#341C1C" }}
+                        className="input-field resize-none"
                         placeholder="Tell us about your project or inquiry..."
                       ></textarea>
                     </div>
 
-                    <button
+                    <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 px-6 rounded-lg font-semibold text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
-                      style={{ backgroundColor: "#010145" }}
+                      className="w-full"
+                      size="lg"
                     >
                       {isSubmitting ? (
                         <>
-                          <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                           Sending...
                         </>
                       ) : (
@@ -385,138 +343,131 @@ export default function ContactUs() {
                           <Send className="w-5 h-5" />
                         </>
                       )}
-                    </button>
+                    </Button>
                   </form>
                 )}
               </div>
-            </div>
+            </motion.div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
-              {/* Contact Details */}
-              <div className="grid gap-6">
-                {contactInfo.map((info, index) => (
-                  <div
-                    key={index}
-                    className="backdrop-blur-lg bg-white/90 rounded-2xl p-6   hover:bg-white hover:border-[#010145] hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
-                        style={{ backgroundColor: "#010145" }}
-                      >
-                        <info.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-primary mb-2">
-                          {info.title}
-                        </h3>
-                        <div className="space-y-1">
-                          {info.details.map((detail, detailIndex) => (
-                            <p key={detailIndex} className="text-gray-600">
-                              {detail}
-                            </p>
-                          ))}
-                        </div>
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+                      <info.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-primary mb-2">
+                        {info.title}
+                      </h3>
+                      <div className="space-y-1">
+                        {info.details.map((detail, detailIndex) => (
+                          <p key={detailIndex} className="text-text-subtle text-sm">
+                            {detail}
+                          </p>
+                        ))}
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                </motion.div>
+              ))}
 
               {/* Social Media */}
-              <div className="backdrop-blur-lg bg-white/90 rounded-2xl p-6 border border-gray-200 shadow-xl">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-lg p-6 border border-border shadow-card"
+              >
+                <h3 className="text-lg font-semibold text-primary mb-4">
                   Follow Us
                 </h3>
-                <div className="flex gap-4">
+                <div className="flex gap-3">
                   {socialMedia.map((social, index) => (
                     <a
                       key={index}
                       href={social.url}
-                      className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl"
+                      className="w-11 h-11 rounded-lg flex items-center justify-center transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
                       style={{ backgroundColor: social.color }}
                       title={social.name}
                     >
-                      <social.icon className="w-6 h-6 text-white" />
+                      <social.icon className="w-5 h-5 text-white" />
                     </a>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Map Section */}
-      <section className="relative py-20 px-4 bg-secondary">
-        <div className="max-w-7xl mx-auto">
+      <section className="section-padding bg-primary">
+        <div className="container-grid">
           <div className="text-center mb-12">
-            <div
-              className="inline-block px-4 py-2 rounded-full border-2 mb-6"
-              style={{ backgroundColor: "#341C1C10", borderColor: "#010145" }}
-            >
-              <span
-                className="text-sm font-medium"
-                style={{ color: "#010145" }}
-              >
-                FIND US
-              </span>
-            </div>
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              Our Location
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Visit our headquarters in Addis Ababa, Ethiopia. We're located in
+            <span className="text-label text-secondary mb-4 block">FIND US</span>
+            <h2 className="text-section text-white mb-4">Our Location</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">
+              Visit our headquarters in Addis Ababa, Ethiopia. We&apos;re located in
               the heart of the business district.
             </p>
           </div>
 
-          <div className="backdrop-blur-lg bg-primary/90 rounded-3xl p-8 shadow-2xl">
-            <div className="grid lg:grid-cols-3 gap-8">
-              {/* Map Section */}
-              <div className="lg:col-span-2">
-                <div className="relative h-96 bg-primary rounded-2xl overflow-hidden">
-                  <iframe
-                    src={officeMapURL}
-                    className="absolute inset-0 w-full h-full border-0"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
-
-                  {/* Map overlay with brand pulse */}
-                  <div
-                    className="absolute top-4 left-4 w-4 h-4 rounded-full animate-pulse"
-                    style={{ backgroundColor: "#341C1C" }}
-                  ></div>
-                </div>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Map */}
+            <div className="lg:col-span-2">
+              <div className="relative h-96 rounded-lg overflow-hidden border border-white/10">
+                <iframe
+                  src={officeMapURL}
+                  className="absolute inset-0 w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
+            </div>
 
-              {/* Directions Panel */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-bold text-secondary mb-4">
-                    Quick Directions
-                  </h3>
-                  <div className="space-y-3 text-secondary">
-                    <p>📍 Located in Addis Ababa</p>
-                    <p>🚗 Free parking available</p>
-                    <p>🚌 Public transport accessible</p>
-                    <p>✈️ 20 minutes from Bole Airport</p>
+            {/* Directions Panel */}
+            <div className="space-y-6 text-white">
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Quick Directions</h3>
+                <div className="space-y-3 text-white/70">
+                  <div className="flex items-center gap-3">
+                    <MapPin className="w-5 h-5 text-secondary" />
+                    <span>Located in Addis Ababa</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-secondary">🚗</span>
+                    <span>Free parking available</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-secondary">🚌</span>
+                    <span>Public transport accessible</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-secondary">✈️</span>
+                    <span>20 minutes from Bole Airport</span>
                   </div>
                 </div>
-
-                <a
-                  href={directionsURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className=" w-full flex py-3 px-6 rounded-lg font-semibold text-primary transition-all duration-300 transform hover:scale-105  items-center justify-center gap-2 shadow-lg"
-                  style={{ backgroundColor: "#f3efe0" }}
-                >
-                  <Globe className="w-5 h-5" />
-                  Get Directions
-                </a>
               </div>
+
+              <a
+                href={directionsURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-4 px-6 rounded-sm bg-white text-primary font-semibold hover:bg-secondary transition-all duration-200 hover:-translate-y-1 shadow-lg"
+              >
+                <Globe className="w-5 h-5" />
+                Get Directions
+              </a>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { Menu, X, ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 // Define the navigation item types
 type DropdownItem = {
@@ -93,7 +94,6 @@ export function Header() {
           description:
             "Boost your online presence with targeted marketing strategies.",
         },
-
         {
           name: "Storage",
           href: "/solutions/storage",
@@ -108,7 +108,6 @@ export function Header() {
         },
       ],
     },
-
     {
       name: "SERVICES",
       href: "/Services",
@@ -122,37 +121,41 @@ export function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? "bg-secondary shadow-md" : "bg-black bg-opacity-20"
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-200 ease-in-out ${
+        scrolled 
+          ? "bg-background shadow-card" 
+          : "bg-navy/80 backdrop-blur-sm"
       }`}
-      initial={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+      initial={{ backgroundColor: "rgba(15, 23, 42, 0.8)" }}
       animate={{
-        backgroundColor: scrolled ? "rgb(243, 244, 246)" : "rgba(0, 0, 0, 0.5)",
+        backgroundColor: scrolled ? "var(--background)" : "rgba(15, 23, 42, 0.8)",
         boxShadow: scrolled
-          ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+          ? "0px 4px 6px rgba(0, 0, 0, 0.05)"
           : "none",
       }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.2 }}
     >
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="container-grid py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-3">
           <div
-            className={`h-8 w-8 font-extrabold text-2xl ${
-              scrolled ? "bg-primary" : "bg-secondary"
-            } rounded transition-colors duration-300`}
-          ></div>
+            className={`h-10 w-10 font-extrabold text-2xl rounded-sm flex items-center justify-center transition-colors duration-200 ${
+              scrolled ? "bg-primary text-primary-foreground" : "bg-white text-primary"
+            }`}
+          >
+            N
+          </div>
           <span
-            className={`text-2xl font-bold ${
-              scrolled ? "text-primary" : "text-secondary"
-            } transition-colors duration-300`}
+            className={`text-2xl font-bold transition-colors duration-200 ${
+              scrolled ? "text-primary" : "text-white"
+            }`}
           >
             NXT
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
             <div
               key={item.name}
@@ -164,15 +167,11 @@ export function Header() {
               {item.dropdown ? (
                 <button
                   onClick={() => toggleDropdown(item.name)}
-                  className={`flex items-center gap-1 text-sm font-medium transition-colors group
+                  className={`flex items-center gap-1 text-sm font-medium tracking-wide transition-colors duration-200 group
                     ${
-                      activeDropdown === item.name
-                        ? scrolled
-                          ? "text-primary"
-                          : "text-white"
-                        : scrolled
-                        ? "text-primary hover:text-primary"
-                        : "text-gray-300 hover:text-white"
+                      scrolled
+                        ? "text-foreground hover:text-secondary"
+                        : "text-white/90 hover:text-white"
                     }`}
                 >
                   {item.name}
@@ -182,35 +181,35 @@ export function Header() {
                     }`}
                   />
                   {item.isNew && (
-                    <span className="absolute -top-1 -right-8 bg-red-500 text-white text-[10px] px-1 py-0.5 rounded-sm">
+                    <span className="absolute -top-1 -right-8 bg-accent text-white text-[10px] px-1 py-0.5 rounded-sm">
                       NEW
                     </span>
                   )}
                   <span
-                    className={`absolute left-0 bottom-0 h-0.5 w-0 ${
-                      scrolled ? "bg-[#010145]" : "bg-white"
-                    } transition-all duration-300 group-hover:w-full`}
+                    className={`absolute left-0 bottom-0 h-0.5 w-0 transition-all duration-200 group-hover:w-full ${
+                      scrolled ? "bg-secondary" : "bg-secondary"
+                    }`}
                   ></span>
                 </button>
               ) : (
                 <Link
                   href={item.href}
-                  className={`relative text-sm font-medium ${
+                  className={`relative text-sm font-medium tracking-wide transition-colors duration-200 group ${
                     scrolled
-                      ? "text-gray-800 hover:text-[#0B032D]"
-                      : "text-gray-300 hover:text-white"
-                  } transition-colors group`}
+                      ? "text-foreground hover:text-secondary"
+                      : "text-white/90 hover:text-white"
+                  }`}
                 >
                   {item.name}
                   {item.isNew && (
-                    <span className="absolute -top-1 -right-8 bg-red-500 text-white text-[10px] px-1 py-0.5 rounded-sm">
+                    <span className="absolute -top-1 -right-8 bg-accent text-white text-[10px] px-1 py-0.5 rounded-sm">
                       NEW
                     </span>
                   )}
                   <span
-                    className={`absolute left-0 bottom-0 h-0.5 w-0 ${
-                      scrolled ? "bg-[#0B032D]" : "bg-white"
-                    } transition-all duration-300 group-hover:w-full`}
+                    className={`absolute left-0 bottom-0 h-0.5 w-0 transition-all duration-200 group-hover:w-full ${
+                      scrolled ? "bg-secondary" : "bg-secondary"
+                    }`}
                   ></span>
                 </Link>
               )}
@@ -223,9 +222,9 @@ export function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden z-50"
+                    className="absolute left-0 mt-3 w-72 rounded-lg bg-card shadow-card-hover border border-border overflow-hidden z-50"
                   >
-                    <div className="  py-2 px-1">
+                    <div className="py-2">
                       {item.dropdown.map((dropdownItem, idx) => (
                         <motion.div
                           key={dropdownItem.name}
@@ -235,14 +234,14 @@ export function Header() {
                         >
                           <Link
                             href={dropdownItem.href}
-                            className="block px-4 py-3 rounded-md hover:bg-gray-50 transition-colors"
+                            className="block px-4 py-3 hover:bg-muted transition-colors duration-200 group"
                             onClick={() => setActiveDropdown(null)}
                           >
-                            <div className="font-medium text-[#0B032D] hover:text-black">
+                            <div className="font-semibold text-card-foreground group-hover:text-secondary transition-colors duration-200">
                               {dropdownItem.name}
                             </div>
                             {dropdownItem.description && (
-                              <p className="mt-1 text-xs text-gray-500">
+                              <p className="mt-1 text-sm text-muted-foreground">
                                 {dropdownItem.description}
                               </p>
                             )}
@@ -257,40 +256,37 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Search and Login */}
-        <div className="flex items-center gap-4">
-          <Link href="/contactus">
+        {/* CTA Button, Theme Toggle, and Mobile Menu */}
+        <div className="flex items-center gap-3">
+          <Link href="/contactus" className="hidden md:block">
             <Button
-              variant="default"
-              className={`hidden md:flex ${
-                scrolled
-                  ? "bg-primary  text-white hover:bg-[#301a4b]"
-                  : "bg-primary text-secondary hover:border-1 hover:border-sky-50"
-              } transition-colors duration-300`}
+              variant={scrolled ? "default" : "outline"}
+              size="sm"
+              className={`${
+                !scrolled && "border-white text-white hover:bg-white hover:text-primary"
+              }`}
             >
-              Contact us
+              Contact Us
             </Button>
           </Link>
+          
+          {/* Theme Toggle */}
+          <div className="hidden md:block">
+            <ThemeToggle scrolled={scrolled} />
+          </div>
+          
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden p-1 ${
-              scrolled ? "hover:bg-gray-200" : "hover:bg-gray-700"
-            } rounded-full transition-colors`}
+            className={`md:hidden p-2 rounded-sm transition-colors duration-200 ${
+              scrolled ? "hover:bg-muted" : "hover:bg-white/10"
+            }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? (
-              <X
-                className={`h-5 w-5 ${
-                  scrolled ? "text-gray-800" : "text-white"
-                }`}
-              />
+              <X className={`h-6 w-6 ${scrolled ? "text-primary" : "text-white"}`} />
             ) : (
-              <Menu
-                className={`h-5 w-5 ${
-                  scrolled ? "text-gray-800" : "text-white"
-                }`}
-              />
+              <Menu className={`h-6 w-6 ${scrolled ? "text-primary" : "text-white"}`} />
             )}
           </button>
         </div>
@@ -303,32 +299,30 @@ export function Header() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden bg-white border-t border-gray-200"
+            transition={{ duration: 0.2 }}
+            className="md:hidden overflow-hidden bg-card border-t border-border"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-2">
+            <div className="container-grid py-6 flex flex-col space-y-2">
               {navItems.map((item, idx) => (
                 <motion.div
                   key={item.name}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: idx * 0.05 }}
-                  className="border-b border-gray-100 pb-2"
+                  transition={{ duration: 0.2, delay: idx * 0.05 }}
+                  className="border-b border-border pb-3"
                 >
                   {item.dropdown ? (
                     <div>
                       <button
                         onClick={() => toggleDropdown(item.name)}
-                        className="flex items-center justify-between w-full py-2 text-gray-800 hover:text-[#0B032D]"
+                        className="flex items-center justify-between w-full py-2 text-card-foreground hover:text-secondary transition-colors duration-200"
                       >
-                        <span className="font-medium">{item.name}</span>
-                        <div className="flex items-center">
-                          <ChevronDown
-                            className={`h-4 w-4 transition-transform duration-200 ${
-                              activeDropdown === item.name ? "rotate-180" : ""
-                            }`}
-                          />
-                        </div>
+                        <span className="font-semibold text-sm tracking-wide">{item.name}</span>
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform duration-200 ${
+                            activeDropdown === item.name ? "rotate-180" : ""
+                          }`}
+                        />
                       </button>
 
                       <AnimatePresence>
@@ -338,32 +332,29 @@ export function Header() {
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="mt-1 ml-4 pl-2 border-l-2 border-gray-100"
+                            className="mt-2 ml-4 pl-4 border-l-2 border-secondary"
                           >
                             {item.dropdown.map((dropdownItem, dropIdx) => (
                               <motion.div
                                 key={dropdownItem.name}
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{
-                                  duration: 0.2,
-                                  delay: dropIdx * 0.05,
-                                }}
+                                transition={{ duration: 0.2, delay: dropIdx * 0.05 }}
                                 className="py-2"
                               >
                                 <Link
                                   href={dropdownItem.href}
-                                  className="block rounded-md"
+                                  className="block"
                                   onClick={() => {
                                     setActiveDropdown(null)
                                     setIsOpen(false)
                                   }}
                                 >
-                                  <div className="font-medium text-[#0B032D] hover:text-black">
+                                  <div className="font-medium text-card-foreground hover:text-secondary transition-colors duration-200">
                                     {dropdownItem.name}
                                   </div>
                                   {dropdownItem.description && (
-                                    <p className="mt-1 text-xs text-gray-500">
+                                    <p className="mt-1 text-xs text-muted-foreground">
                                       {dropdownItem.description}
                                     </p>
                                   )}
@@ -377,12 +368,12 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="flex items-center justify-between py-2 text-gray-800 hover:bg-[#0B032D]"
+                      className="flex items-center justify-between py-2 text-card-foreground hover:text-secondary transition-colors duration-200"
                       onClick={() => setIsOpen(false)}
                     >
-                      <span className="font-medium">{item.name}</span>
+                      <span className="font-semibold text-sm tracking-wide">{item.name}</span>
                       {item.isNew && (
-                        <span className="bg-red-500 text-white text-[10px] px-1 py-0.5 rounded-sm">
+                        <span className="bg-accent text-white text-[10px] px-2 py-0.5 rounded-sm">
                           NEW
                         </span>
                       )}
@@ -390,22 +381,20 @@ export function Header() {
                   )}
                 </motion.div>
               ))}
+              
+              {/* Mobile Theme Toggle and CTA */}
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.3, delay: navItems.length * 0.05 }}
-                className="pt-2"
+                transition={{ duration: 0.2, delay: navItems.length * 0.05 }}
+                className="pt-4 flex items-center gap-3"
               >
-                <Button
-                  variant="default"
-                  className={`hidden md:flex transition-colors duration-300 ${
-                    scrolled
-                      ? "bg-[#0B032D] text-white hover:bg-[#643636]"
-                      : "bg-white text-[#0B032D] hover:bg-[#e6f4f3]"
-                  }`}
-                >
-                  Conatct us
-                </Button>
+                <Link href="/contactus" onClick={() => setIsOpen(false)} className="flex-1">
+                  <Button className="w-full">
+                    Contact Us
+                  </Button>
+                </Link>
+                <ThemeToggle scrolled={true} />
               </motion.div>
             </div>
           </motion.div>
