@@ -52,14 +52,14 @@ export default function FAQSection({ faqs }: { faqs: faqsType[] }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-lg border border-border shadow-card overflow-hidden"
+                className="bg-primary hover:bg-primary-light rounded-lg shadow-card overflow-hidden border-b-none"
               >
                 <button
-                  className="w-full flex justify-between items-center text-left p-5 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-inset transition-colors duration-200 hover:bg-background-alt"
+                  className="w-full flex justify-between items-center text-left p-5 transition-colors duration-200 "
                   onClick={() => toggleIndex(index)}
                   aria-expanded={openIndex === index}
                 >
-                  <span className="font-semibold text-primary pr-4">{faq.question}</span>
+                  <span className="font-semibold text-background pr-4">{faq.question}</span>
                   <span className="flex-shrink-0 w-8 h-8 rounded-full bg-background-alt flex items-center justify-center">
                     {openIndex === index ? (
                       <Minus className="w-4 h-4 text-secondary" />
@@ -79,7 +79,7 @@ export default function FAQSection({ faqs }: { faqs: faqsType[] }) {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 text-text-subtle border-t border-border pt-4">
+                      <div className="px-5 pb-5 text-text-subtle  border-border pt-4">
                         {faq.answer}
                       </div>
                     </motion.div>

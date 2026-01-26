@@ -214,9 +214,9 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white border border-border p-6 rounded-lg shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
+                    className="bg-primary border border-border p-6 rounded-lg shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
                   >
-                    <h4 className="text-lg font-semibold text-primary mb-4">
+                    <h4 className="text-lg font-semibold text-primary-foreground mb-4">
                       {group.title}
                     </h4>
                     <ul

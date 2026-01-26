@@ -122,16 +122,14 @@ export function Header() {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-200 ease-in-out ${
-        scrolled 
-          ? "bg-background shadow-card" 
-          : "bg-navy/80 backdrop-blur-sm"
+        scrolled ? "bg-background shadow-card" : "bg-navy/80 backdrop-blur-sm"
       }`}
       initial={{ backgroundColor: "rgba(15, 23, 42, 0.8)" }}
       animate={{
-        backgroundColor: scrolled ? "var(--background)" : "rgba(15, 23, 42, 0.8)",
-        boxShadow: scrolled
-          ? "0px 4px 6px rgba(0, 0, 0, 0.05)"
-          : "none",
+        backgroundColor: scrolled
+          ? "var(--background)"
+          : "rgba(15, 23, 42, 0.8)",
+        boxShadow: scrolled ? "0px 4px 6px rgba(0, 0, 0, 0.05)" : "none",
       }}
       transition={{ duration: 0.2 }}
     >
@@ -140,7 +138,9 @@ export function Header() {
         <Link href="/" className="flex items-center gap-3">
           <div
             className={`h-10 w-10 font-extrabold text-2xl rounded-sm flex items-center justify-center transition-colors duration-200 ${
-              scrolled ? "bg-primary text-primary-foreground" : "bg-white text-primary"
+              scrolled
+                ? "bg-primary text-primary-foreground"
+                : "bg-white text-[#1A2B3C]"
             }`}
           >
             N
@@ -263,18 +263,19 @@ export function Header() {
               variant={scrolled ? "default" : "outline"}
               size="sm"
               className={`${
-                !scrolled && "border-white text-white hover:bg-white hover:text-primary"
+                !scrolled &&
+                "border-white text-white hover:bg-white hover:text-primary"
               }`}
             >
               Contact Us
             </Button>
           </Link>
-          
+
           {/* Theme Toggle */}
           <div className="hidden md:block">
             <ThemeToggle scrolled={scrolled} />
           </div>
-          
+
           {/* Mobile Menu Button */}
           <button
             className={`md:hidden p-2 rounded-sm transition-colors duration-200 ${
@@ -284,9 +285,13 @@ export function Header() {
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? (
-              <X className={`h-6 w-6 ${scrolled ? "text-primary" : "text-white"}`} />
+              <X
+                className={`h-6 w-6 ${scrolled ? "text-primary" : "text-white"}`}
+              />
             ) : (
-              <Menu className={`h-6 w-6 ${scrolled ? "text-primary" : "text-white"}`} />
+              <Menu
+                className={`h-6 w-6 ${scrolled ? "text-primary" : "text-white"}`}
+              />
             )}
           </button>
         </div>
@@ -317,7 +322,9 @@ export function Header() {
                         onClick={() => toggleDropdown(item.name)}
                         className="flex items-center justify-between w-full py-2 text-card-foreground hover:text-secondary transition-colors duration-200"
                       >
-                        <span className="font-semibold text-sm tracking-wide">{item.name}</span>
+                        <span className="font-semibold text-sm tracking-wide">
+                          {item.name}
+                        </span>
                         <ChevronDown
                           className={`h-4 w-4 transition-transform duration-200 ${
                             activeDropdown === item.name ? "rotate-180" : ""
@@ -339,7 +346,10 @@ export function Header() {
                                 key={dropdownItem.name}
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.2, delay: dropIdx * 0.05 }}
+                                transition={{
+                                  duration: 0.2,
+                                  delay: dropIdx * 0.05,
+                                }}
                                 className="py-2"
                               >
                                 <Link
@@ -371,7 +381,9 @@ export function Header() {
                       className="flex items-center justify-between py-2 text-card-foreground hover:text-secondary transition-colors duration-200"
                       onClick={() => setIsOpen(false)}
                     >
-                      <span className="font-semibold text-sm tracking-wide">{item.name}</span>
+                      <span className="font-semibold text-sm tracking-wide">
+                        {item.name}
+                      </span>
                       {item.isNew && (
                         <span className="bg-accent text-white text-[10px] px-2 py-0.5 rounded-sm">
                           NEW
@@ -381,7 +393,7 @@ export function Header() {
                   )}
                 </motion.div>
               ))}
-              
+
               {/* Mobile Theme Toggle and CTA */}
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
@@ -389,10 +401,12 @@ export function Header() {
                 transition={{ duration: 0.2, delay: navItems.length * 0.05 }}
                 className="pt-4 flex items-center gap-3"
               >
-                <Link href="/contactus" onClick={() => setIsOpen(false)} className="flex-1">
-                  <Button className="w-full">
-                    Contact Us
-                  </Button>
+                <Link
+                  href="/contactus"
+                  onClick={() => setIsOpen(false)}
+                  className="flex-1"
+                >
+                  <Button className="w-full">Contact Us</Button>
                 </Link>
                 <ThemeToggle scrolled={true} />
               </motion.div>

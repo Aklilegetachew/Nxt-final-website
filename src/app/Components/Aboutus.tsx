@@ -155,7 +155,9 @@ export default function AboutUs() {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-label text-secondary mb-6 block">ABOUT US</span>
+            <span className="text-label text-secondary mb-6 block">
+              ABOUT US
+            </span>
             <h1 className="text-6xl md:text-8xl font-bold mb-6 text-primary">
               NXT
             </h1>
@@ -175,7 +177,7 @@ export default function AboutUs() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
+                  className="bg-background rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
                 >
                   <stat.icon className="w-8 h-8 mx-auto mb-4 text-secondary" />
                   <div className="text-3xl font-bold text-primary mb-2">
@@ -196,7 +198,9 @@ export default function AboutUs() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <div className="flex flex-col items-center gap-2">
-            <span className="text-text-subtle text-xs tracking-wide">SCROLL</span>
+            <span className="text-text-subtle text-xs tracking-wide">
+              SCROLL
+            </span>
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
@@ -238,7 +242,7 @@ export default function AboutUs() {
                 </Button>
               </Link>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -246,9 +250,9 @@ export default function AboutUs() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative bg-white rounded-lg border border-border shadow-card-hover overflow-hidden">
+              <div className="relative  rounded-lg border border-border shadow-card-hover overflow-hidden">
                 <Image
-                  src="/NXTSmall.png"
+                  src="/NXTLogo2.png"
                   alt="Digital Innovation"
                   width={600}
                   height={400}
@@ -264,7 +268,9 @@ export default function AboutUs() {
       <section className="section-padding bg-background-alt">
         <div className="container-grid">
           <div className="text-center mb-16">
-            <span className="text-label text-secondary mb-4 block">OUR JOURNEY</span>
+            <span className="text-label text-secondary mb-4 block">
+              OUR JOURNEY
+            </span>
             <h2 className="text-section text-primary mb-6">
               Evolution of Excellence
             </h2>
@@ -290,11 +296,17 @@ export default function AboutUs() {
                     index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
-                  <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                    <div className="bg-white rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200">
-                      <div className={`flex items-center gap-3 mb-4 ${
-                        index % 2 === 0 ? "md:justify-end" : "md:justify-start"
-                      }`}>
+                  <div
+                    className={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}
+                  >
+                    <div className="bg-background rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200">
+                      <div
+                        className={`flex items-center gap-3 mb-4 ${
+                          index % 2 === 0
+                            ? "md:justify-end"
+                            : "md:justify-start"
+                        }`}
+                      >
                         <item.icon className="w-5 h-5 text-secondary" />
                         <span className="text-2xl font-bold text-secondary">
                           {item.year}
@@ -303,9 +315,7 @@ export default function AboutUs() {
                       <h3 className="text-xl font-semibold mb-3 text-primary">
                         {item.title}
                       </h3>
-                      <p className="text-text-subtle">
-                        {item.description}
-                      </p>
+                      <p className="text-text-subtle">{item.description}</p>
                     </div>
                   </div>
 
@@ -326,7 +336,9 @@ export default function AboutUs() {
       <section className="section-padding bg-background">
         <div className="container-grid">
           <div className="text-center mb-16">
-            <span className="text-label text-secondary mb-4 block">OUR EXPERTISE</span>
+            <span className="text-label text-secondary mb-4 block">
+              OUR EXPERTISE
+            </span>
             <h2 className="text-section text-primary mb-6">
               Comprehensive Tech Solutions
             </h2>
@@ -344,18 +356,16 @@ export default function AboutUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200 group"
+                className="bg-background-alt rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200 group"
               >
                 <div className="w-14 h-14 rounded-lg bg-primary flex items-center justify-center mb-5 group-hover:bg-secondary transition-colors duration-200">
-                  <service.icon className="w-7 h-7 text-white" />
+                  <service.icon className="w-7 h-7 text-background" />
                 </div>
 
                 <h3 className="text-xl font-semibold mb-3 text-primary">
                   {service.title}
                 </h3>
-                <p className="text-text-subtle mb-5">
-                  {service.description}
-                </p>
+                <p className="text-text-subtle mb-5">{service.description}</p>
 
                 <div className="flex flex-wrap gap-2">
                   {service.tech.map((tech, techIndex) => (
@@ -374,11 +384,13 @@ export default function AboutUs() {
       </section>
 
       {/* Values Section */}
-      <section className="section-padding bg-primary">
+      <section className="section-padding bg-background">
         <div className="container-grid">
           <div className="text-center mb-16">
-            <span className="text-label text-secondary mb-4 block">OUR VALUES</span>
-            <h2 className="text-section text-white mb-6">
+            <span className="text-label text-secondary mb-4 block">
+              OUR VALUES
+            </span>
+            <h2 className="text-section text-primary mb-6">
               What Drives Us Forward
             </h2>
           </div>
@@ -391,15 +403,15 @@ export default function AboutUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center p-6 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-200"
+                className="text-center p-6 bg-background-alt rounded-lg border border-primary/10 hover:bg-primary/10 transition-all duration-200"
               >
                 <div className="w-16 h-16 mx-auto mb-5 rounded-lg bg-secondary/20 flex items-center justify-center">
                   <value.icon className="w-8 h-8 text-secondary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">
+                <h3 className="text-xl font-semibold mb-3 text-primary">
                   {value.title}
                 </h3>
-                <p className="text-white/70">{value.desc}</p>
+                <p className="text-text-subtle">{value.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -420,8 +432,8 @@ export default function AboutUs() {
               Ready to Transform Your Business?
             </h2>
             <p className="text-body-lg text-text-subtle mb-10">
-              Let&apos;s collaborate to build innovative solutions that drive your
-              success in the digital age
+              Let&apos;s collaborate to build innovative solutions that drive
+              your success in the digital age
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -73,10 +73,10 @@ export default function PainPointsSection() {
               className="bg-white rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200 group"
             >
               <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-14 h-14 rounded-lg bg-primary flex items-center justify-center group-hover:bg-secondary transition-colors duration-200">
+                <div className="w-14 h-14 rounded-lg bg-[#1a2b3c] flex items-center justify-center group-hover:bg-secondary transition-colors duration-200">
                   <point.icon className="w-7 h-7 text-white" />
                 </div>
-                <h4 className="text-lg font-semibold text-primary">
+                <h4 className="text-lg font-semibold text-secondary">
                   {point.title}
                 </h4>
                 <p className="text-sm text-text-subtle">{point.description}</p>

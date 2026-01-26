@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: process.env.NEXT_PUBLIC_SITE_URL,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/NXTSmall.png`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/NXTNoBg.png`,
         width: 1200,
         height: 630,
       },
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     "@type": "Organization",
     name: "NXT Software and Technology",
     url: process.env.NEXT_PUBLIC_SITE_URL,
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL}/NXTSmall.png`,
+    logo: `${process.env.NEXT_PUBLIC_SITE_URL}/NXTNoBg.png`,
     sameAs: ["https://www.linkedin.com/company/nxt-trading-plc/"],
     description:
       "Ethiopia-based software and technology company offering ERP, mobile applications, digital media, and enterprise solutions.",

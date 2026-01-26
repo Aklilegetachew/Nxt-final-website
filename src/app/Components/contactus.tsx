@@ -170,7 +170,7 @@ export default function ContactUs() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="bg-white rounded-lg p-8 border border-border shadow-card">
+              <div className="bg-background-alt rounded-lg p-8 border border-border shadow-card">
                 <div className="mb-8">
                   <h2 className="text-2xl font-semibold text-primary mb-3">
                     Send us a Message
@@ -184,7 +184,7 @@ export default function ContactUs() {
                 {isSubmitted ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent flex items-center justify-center">
-                      <CheckCircle className="w-8 h-8 text-white" />
+                      <CheckCircle className="w-8 h-8 text-primary" />
                     </div>
                     <h3 className="text-xl font-semibold text-primary mb-3">
                       Message Sent Successfully!
@@ -358,11 +358,11 @@ export default function ContactUs() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
+                  className="bg-background-alt rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-6 h-6 text-white" />
+                      <info.icon className="w-6 h-6 text-background" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-primary mb-2">
@@ -386,7 +386,7 @@ export default function ContactUs() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-lg p-6 border border-border shadow-card"
+                className="bg-background-alt rounded-lg p-6 border border-border shadow-card"
               >
                 <h3 className="text-lg font-semibold text-primary mb-4">
                   Follow Us
@@ -411,12 +411,12 @@ export default function ContactUs() {
       </section>
 
       {/* Map Section */}
-      <section className="section-padding bg-primary">
+      <section className="section-padding bg-background-alt">
         <div className="container-grid">
           <div className="text-center mb-12">
             <span className="text-label text-secondary mb-4 block">FIND US</span>
-            <h2 className="text-section text-white mb-4">Our Location</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">
+            <h2 className="text-section text-primary mb-4">Our Location</h2>
+            <p className="text-primary/70 max-w-2xl mx-auto">
               Visit our headquarters in Addis Ababa, Ethiopia. We&apos;re located in
               the heart of the business district.
             </p>
@@ -436,10 +436,10 @@ export default function ContactUs() {
             </div>
 
             {/* Directions Panel */}
-            <div className="space-y-6 text-white">
+            <div className="space-y-6 text-primary">
               <div>
                 <h3 className="text-xl font-semibold mb-4">Quick Directions</h3>
-                <div className="space-y-3 text-white/70">
+                <div className="space-y-3 text-primary/70">
                   <div className="flex items-center gap-3">
                     <MapPin className="w-5 h-5 text-secondary" />
                     <span>Located in Addis Ababa</span>
@@ -463,7 +463,7 @@ export default function ContactUs() {
                 href={directionsURL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-4 px-6 rounded-sm bg-white text-primary font-semibold hover:bg-secondary transition-all duration-200 hover:-translate-y-1 shadow-lg"
+                className="flex items-center justify-center gap-2 w-full py-4 px-6 rounded-sm bg-background text-primary font-semibold hover:bg-secondary transition-all duration-200 hover:-translate-y-1 shadow-lg"
               >
                 <Globe className="w-5 h-5" />
                 Get Directions

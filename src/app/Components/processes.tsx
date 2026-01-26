@@ -34,7 +34,9 @@ export default function ProcessRopeSteps() {
     <section className="section-padding bg-background">
       <div className="container-grid">
         <div className="text-center mb-16">
-          <span className="text-label text-secondary mb-4 block">OUR PROCESS</span>
+          <span className="text-label text-secondary mb-4 block">
+            OUR PROCESS
+          </span>
           <h2 className="text-section text-primary mb-6">
             How We Deliver Enterprise Software Solutions
           </h2>
@@ -55,7 +57,7 @@ export default function ProcessRopeSteps() {
               className="flex items-start gap-5 bg-white rounded-lg p-6 border border-border shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-200"
             >
               {/* Number Circle */}
-              <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center rounded-lg bg-primary text-white font-bold text-lg">
+              <div className="bg-[#1a2b3c] flex-shrink-0 w-14 h-14 flex items-center justify-center rounded-lg  text-white font-bold text-lg">
                 {step.number}
               </div>
 
@@ -64,9 +66,7 @@ export default function ProcessRopeSteps() {
                 <h3 className="text-xl font-semibold text-primary mb-2">
                   {step.title}
                 </h3>
-                <p className="text-text-subtle">
-                  {step.description}
-                </p>
+                <p className="text-text-subtle">{step.description}</p>
               </div>
             </motion.div>
           ))}
