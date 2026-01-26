@@ -6,6 +6,7 @@ import { Header } from "@/app/Components/header"
 import NShapeHero from "@/app/Components/NShapeHero"
 import PreviousWorks from "@/app/Components/PreviousWorks"
 import ProcessRopeSteps from "@/app/Components/processes"
+import { Suspense } from "react"
 
 export default function Bussiness() {
   const projects = [
@@ -48,12 +49,14 @@ export default function Bussiness() {
   ]
   return (
     <main className="min-h-screen">
-      <Header />
-      <NShapeHero />
-      <PainPointsSection />
-      <ProcessRopeSteps />
-      <PreviousWorks projects={projects} />
-      <Footer />
+      <Suspense>
+        <Header />
+        <NShapeHero />
+        <PainPointsSection />
+        <ProcessRopeSteps />
+        <PreviousWorks projects={projects} />
+        <Footer />
+      </Suspense>
     </main>
   )
 }

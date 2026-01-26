@@ -6,6 +6,7 @@ import { ReactNode } from "react"
 import Script from "next/script"
 import AnalyticsTracker from "./Components/AnalyticsTracker"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { Suspense } from "react"
 
 // Load Inter font as primary (per design guide - clean, legible sans-serif)
 const inter = Inter({
@@ -96,15 +97,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AnalyticsTracker />
-          {children}
-        </ThemeProvider>
+        <Suspense fallback={null}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <AnalyticsTracker />
+            {children}
+          </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   )
